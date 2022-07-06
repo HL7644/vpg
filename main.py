@@ -80,7 +80,7 @@ class VPG(nn.Module): #Process of General Policy Iteration(GPI)
         categ=self.agent.pm(obs)
         action=categ.sample()
         obs_f, reward, termin_signal, _=self.agent.test_env.step(action)
-        ep_step=Ep_Step(obs, action, reward, obs_f, termin_signal)
+        ep_step=Ep_Step(obs, categ, action, reward, obs_f, termin_signal)
         ep_data.append(ep_step)
         acc_rew+=reward
         len_ep+=1
