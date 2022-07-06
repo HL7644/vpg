@@ -77,8 +77,8 @@ class VPG(nn.Module): #Process of General Policy Iteration(GPI)
       acc_rew=0
       ep_data=[]
       while True:
-        action=self.agent.pm(obs)
-        action=torch.clamp(action, self.agent.a_low, self.agent.a_high).detach().cpu().numpy()
+        categ=self.agent.pm(obs)
+        action=categ.sample()
         obs_f, reward, termin_signal, _=self.agent.test_env.step(action)
         ep_step=Ep_Step(obs, action, reward, obs_f, termin_signal)
         ep_data.append(ep_step)
